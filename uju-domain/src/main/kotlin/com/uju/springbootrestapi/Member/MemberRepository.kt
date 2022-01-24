@@ -1,22 +1,28 @@
-package com.uju.springbootrestapi.Member
+package com.uju.springbootrestapi.member
 
 import org.springframework.stereotype.Repository
-import org.springframework.transaction.annotation.Transactional
 import javax.persistence.EntityManager
-import javax.persistence.PersistenceContext
 
 @Repository
-class MemberRepository {
+class MemberRepository(
+    private val em: EntityManager
+) {
 
-    @PersistenceContext
-    private lateinit var em: EntityManager
-
-    fun save(member: Member): Long {
+    fun save(member: Member) {
         em.persist(member)
-        return member.id
     }
 
-    fun find(id: Long): Member {
+    fun findOne(id: Long): Member {
         return em.find(Member::class.java, id)
+    }
+
+    fun findAll(): List<Member> {
+        return em.createQuery("select m from Member m", Member::class.java).resultList
+    }
+
+    fun findByName(name: String): List<Member> {
+        return em.createQuery("select m from Member m where m.name = :name", Member::class.java)
+            .setParameter("name", name)
+            .resultList
     }
 }
