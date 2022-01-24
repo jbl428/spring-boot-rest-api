@@ -1,8 +1,7 @@
-package com.uju.springbootrestapi.Member
+package com.uju.springbootrestapi.member
 
-import com.uju.springbootrestapi.Adderss.Address
-import com.uju.springbootrestapi.Order.Order
-import org.springframework.transaction.annotation.Transactional
+import com.uju.springbootrestapi.adderss.Address
+import com.uju.springbootrestapi.order.Order
 import javax.persistence.*
 
 @Entity
@@ -13,7 +12,7 @@ class Member {
     @Column(name = "member_id")
     var id: Long = 0
 
-    var username: String? = null
+    lateinit var name: String
 
     @Embedded
     lateinit var address: Address
