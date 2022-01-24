@@ -3,6 +3,7 @@ tasks {
         mainClass.set("com.uju.springbootrestapi.ApiApplicationKt")
     }
     bootJar {
+        mainClass.set("com.uju.springbootrestapi.ApiApplicationKt")
         enabled = true
     }
     jar {
@@ -10,6 +11,8 @@ tasks {
     }
 }
 dependencies {
+    api(project(":uju-domain"))
+
     implementation("org.springframework.boot:spring-boot-starter-web:2.6.3")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:2.6.3")
     implementation("org.springframework.boot:spring-boot-devtools")
