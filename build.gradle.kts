@@ -50,8 +50,12 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        implementation("org.springframework.boot:spring-boot-starter-test:2.6.3")
+        implementation("org.springframework.boot:spring-boot-starter-jdbc")
+
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
+
 
     allOpen {
         annotation("javax.persistence.Entity")
