@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    include:
+      - domain # multi module에서의 application.yml 설정 가져오는 부분 연구 필요
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
