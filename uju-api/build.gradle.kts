@@ -16,4 +16,5 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:2.6.3")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:2.6.3")
     implementation("org.springframework.boot:spring-boot-devtools")
+    implementation("org.springframework.boot:spring-boot-starter-validation:2.6.2")
 }
