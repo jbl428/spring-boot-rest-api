@@ -1,5 +1,6 @@
 package com.uju.springbootrestapi.delivery
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.uju.springbootrestapi.adderss.Address
 import com.uju.springbootrestapi.order.Order
 import javax.persistence.*
@@ -18,6 +19,7 @@ class Delivery {
 
     fun getB():String {return this.b}
 
+    @JsonIgnore
     @OneToOne(mappedBy = "delivery")
     lateinit var order: Order
 
@@ -25,5 +27,5 @@ class Delivery {
     lateinit var address: Address
 
     @Enumerated(EnumType.STRING)
-    lateinit var status: DeliveryStatus
+    var status: DeliveryStatus = DeliveryStatus.READY
 }
