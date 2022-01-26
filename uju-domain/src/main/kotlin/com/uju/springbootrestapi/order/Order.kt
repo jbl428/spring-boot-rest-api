@@ -19,14 +19,14 @@ class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private lateinit var member: Member
+    lateinit var member: Member
 
     @OneToMany(mappedBy = "order", cascade = [CascadeType.ALL])
-    private var orderItems: MutableList<OrderItem> = mutableListOf()
+    var orderItems: MutableList<OrderItem> = mutableListOf()
 
     @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "delivery_id")
-    private lateinit var delivery : Delivery
+    lateinit var delivery : Delivery
 
     lateinit var orderDate: LocalDateTime
 
@@ -34,7 +34,7 @@ class Order {
     lateinit var status: OrderStatus
 
     // 연관관계 메서드
-    fun setMember(member: Member): Unit {
+    fun addMemberOrder(member: Member): Unit {
         this.member = member
         member.orders.add(this)
     }
@@ -44,7 +44,7 @@ class Order {
         orderItem.order = this
     }
 
-    fun setDelivery(delivery: Delivery): Unit {
+    fun setDeliveryOrder(delivery: Delivery): Unit {
         this.delivery = delivery
         delivery.order = this
     }

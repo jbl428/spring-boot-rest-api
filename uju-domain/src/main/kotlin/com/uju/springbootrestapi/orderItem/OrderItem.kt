@@ -1,5 +1,6 @@
 package com.uju.springbootrestapi.orderItem
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.uju.springbootrestapi.delivery.Delivery
 import com.uju.springbootrestapi.item.Item
 import com.uju.springbootrestapi.member.Member
@@ -17,6 +18,7 @@ class OrderItem {
     @JoinColumn(name = "item_id")
     lateinit var item: Item
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     lateinit var order: Order
