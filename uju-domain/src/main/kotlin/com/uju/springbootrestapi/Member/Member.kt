@@ -1,5 +1,6 @@
 package com.uju.springbootrestapi.member
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.uju.springbootrestapi.adderss.Address
 import com.uju.springbootrestapi.order.Order
 import javax.persistence.*
@@ -17,6 +18,7 @@ class Member {
     @Embedded
     lateinit var address: Address
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     var orders: MutableList<Order> = mutableListOf()
 }
