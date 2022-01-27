@@ -12,12 +12,12 @@ import javax.annotation.PostConstruct
 import javax.persistence.EntityManager
 
 @Component
-class InitDb (
+class InitDb(
     private val initService: InitService,
 ) {
 
     @PostConstruct
-    fun init(): Unit {
+    fun init() {
         initService.dbInit1()
     }
 
@@ -27,28 +27,31 @@ class InitDb (
         class InitService(
             private val em: EntityManager
         ) {
-            fun dbInit1(): Unit {
-                val member: Member = Member()
-                member.name = "userA"
-                member.address = Address("서울", "1", "1111")
+            fun dbInit1() {
+                val member = Member().apply {
+                    name = "userA"
+                    address = Address("서울", "1", "1111")
+                }
                 em.persist(member)
 
-                val book1: Book = Book()
-                book1.name = "JPA1 BOOK"
-                book1.price = 10000
-                book1.stockQuantity = 100
+                val book1 = Book().apply {
+                    name = "JPA1 BOOK"
+                    price = 10000
+                    stockQuantity = 100
+                }
                 em.persist(book1)
 
-                val book2: Book = Book()
-                book2.name = "JPA2 BOOK"
-                book2.price = 20000
-                book2.stockQuantity = 100
+                val book2 = Book().apply {
+                    name = "JPA2 BOOK"
+                    price = 20000
+                    stockQuantity = 100
+                }
                 em.persist(book2)
 
-                val orderItem1: OrderItem = OrderItem.createOrderItem(book1, 10000, 1)
-                val orderItem2: OrderItem = OrderItem.createOrderItem(book2, 20000, 2)
+                val orderItem1 = OrderItem.createOrderItem(book1, 10000, 1)
+                val orderItem2 = OrderItem.createOrderItem(book2, 20000, 2)
 
-                val delivery: Delivery = Delivery()
+                val delivery = Delivery()
                 delivery.address = member.address
                 val order: Order = Order.createOrder(member, delivery, orderItem1, orderItem2)
                 em.persist(order)
