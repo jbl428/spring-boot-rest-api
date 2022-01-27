@@ -23,7 +23,7 @@ class MemberApiController(
     @PutMapping("/api/v1/members/{id}")
     fun updateMember(@PathVariable("id") id: Long, @RequestBody @Valid updateMemberRequestDto: UpdateMemberRequestDto)
     : UpdateMemberResponseDto {
-        memberService.upd xate(id, updateMemberRequestDto.name)
+        memberService.update(id, updateMemberRequestDto.name)
         val findMember: Member = memberService.findOne(id)
         return UpdateMemberResponseDto(findMember.id, findMember.name)
     }
