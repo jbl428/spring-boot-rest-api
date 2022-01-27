@@ -47,14 +47,13 @@ class OrderService(
 
     // 취소
     @Transactional
-    fun cancelOrder(orderId: Long): Unit {
+    fun cancelOrder(orderId: Long) {
         // 주문 엔티티 조회
         val order: Order = orderRepository.findOne(orderId)
 
         // 주문 취소
         order.cancel()
     }
-
 
     // 검색
     fun findOrders(orderSearch: OrderSearch): List<Order> {

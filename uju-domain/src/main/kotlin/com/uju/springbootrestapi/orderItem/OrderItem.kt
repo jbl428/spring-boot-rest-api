@@ -1,11 +1,16 @@
 package com.uju.springbootrestapi.orderItem
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.uju.springbootrestapi.delivery.Delivery
 import com.uju.springbootrestapi.item.Item
-import com.uju.springbootrestapi.member.Member
 import com.uju.springbootrestapi.order.Order
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 
 @Entity
 class OrderItem {
@@ -28,10 +33,10 @@ class OrderItem {
     var count: Int = 0
 
     // 비즈니스 로직
-    fun cancel(): Unit {
+    fun cancel() {
         item.addStock(count)
     }
-    
+
     fun getTotalPrice(): Int {
         return orderPrice * count
     }

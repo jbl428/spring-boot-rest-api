@@ -5,6 +5,7 @@ plugins {
     id("org.springframework.boot") version "2.6.3"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.6.10"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
     kotlin("jvm") version "1.6.10"
     kotlin("plugin.spring") version "1.6.10"
     kotlin("plugin.jpa") version "1.6.10"
@@ -32,7 +33,6 @@ allprojects {
     }
 }
 
-
 subprojects {
     apply(plugin = "idea")
     apply(plugin = "kotlin")
@@ -44,6 +44,7 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
     apply(plugin = "kotlin-spring")
     apply(plugin = "kotlin-jpa")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     dependencies {
         implementation(kotlin("stdlib"))
@@ -58,7 +59,6 @@ subprojects {
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
-
 
     allOpen {
         annotation("javax.persistence.Entity")

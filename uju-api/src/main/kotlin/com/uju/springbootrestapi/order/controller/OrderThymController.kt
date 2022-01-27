@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.ui.Model as Model1
 
 @Controller
-class OrderThymController (
+class OrderThymController(
     private val orderService: OrderService,
     private val memberService: MemberService,
     private val itemService: ItemService
-){
+) {
     @GetMapping("/order")
     fun creatForm(model: Model1): String {
         val members: List<Member> = memberService.findMembers()
@@ -32,16 +32,17 @@ class OrderThymController (
     }
 
     @PostMapping("/order")
-    fun order(@RequestParam("memberId") memeberId: Long,
-              @RequestParam("itemId") itemId:Long,
-              @RequestParam("count") count: Int
+    fun order(
+        @RequestParam("memberId") memeberId: Long,
+        @RequestParam("itemId") itemId: Long,
+        @RequestParam("count") count: Int
     ): String {
         orderService.order(memeberId, itemId, count)
         return "redirect:/orders"
     }
 
     @GetMapping("/orders")
-    fun orderList(@ModelAttribute("orderSearch") orderSearch: OrderSearch, model: Model1) : String {
+    fun orderList(@ModelAttribute("orderSearch") orderSearch: OrderSearch, model: Model1): String {
         val orders: List<Order> = orderService.findOrders(orderSearch)
         model.addAttribute("orders", orders)
 

@@ -5,7 +5,7 @@ import javax.persistence.Entity
 
 @Entity
 @DiscriminatorValue("B")
-class Book: Item() {
+class Book : Item() {
     var author: String = ""
     var isbn: String = ""
 }

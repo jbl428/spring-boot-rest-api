@@ -9,7 +9,8 @@ import com.uju.springbootrestapi.member.Member
 import com.uju.springbootrestapi.order.Order
 import com.uju.springbootrestapi.order.OrderRepository
 import com.uju.springbootrestapi.order.OrderStatus
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -22,7 +23,7 @@ internal class OrderServiceTest @Autowired constructor(
     private val em: EntityManager,
     private val orderService: OrderService,
     private val orderRepository: OrderRepository
-){
+) {
 
     @Test
     fun `상품 주문`() {

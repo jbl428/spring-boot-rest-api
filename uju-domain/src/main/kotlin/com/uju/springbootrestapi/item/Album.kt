@@ -5,7 +5,7 @@ import javax.persistence.Entity
 
 @Entity
 @DiscriminatorValue("A")
-class Album: Item() {
+class Album : Item() {
     var artist: String = ""
     var etc: String = ""
 }

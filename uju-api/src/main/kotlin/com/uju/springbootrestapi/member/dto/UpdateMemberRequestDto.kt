@@ -1,5 +1,5 @@
 package com.uju.springbootrestapi.member.dto
 
-data class UpdateMemberRequestDto (
+data class UpdateMemberRequestDto(
     var name: String
 )

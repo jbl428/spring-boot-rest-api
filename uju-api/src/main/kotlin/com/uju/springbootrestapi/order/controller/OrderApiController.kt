@@ -13,7 +13,7 @@ class OrderApiController(
 ) {
 
     @GetMapping("/api/v1/simple-orders")
-    fun orders(): List<OrderSimpleQueryDto>  {
+    fun orders(): List<OrderSimpleQueryDto> {
         return orderRepository.findOrderDtos()
     }
 
@@ -26,6 +26,4 @@ class OrderApiController(
 
         return result
     }
-
-
 }

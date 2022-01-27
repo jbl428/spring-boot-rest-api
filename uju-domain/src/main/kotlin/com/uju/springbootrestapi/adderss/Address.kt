@@ -4,11 +4,11 @@ import javax.persistence.Column
 import javax.persistence.Embeddable
 
 @Embeddable
-class Address (
+class Address(
     @Column
-    val city: String ,
+    val city: String,
     @Column
-    val street: String ,
+    val street: String,
     @Column
-    val zipcode: String ,
+    val zipcode: String,
 )

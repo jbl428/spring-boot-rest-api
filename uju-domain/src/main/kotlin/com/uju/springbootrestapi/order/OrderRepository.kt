@@ -8,7 +8,7 @@ class OrderRepository(
     private val em: EntityManager
 ) {
 
-    fun save(order: Order): Unit {
+    fun save(order: Order) {
         em.persist(order)
     }
 
@@ -16,31 +16,36 @@ class OrderRepository(
         return em.find(Order::class.java, id)
     }
 
-     fun findAll(orderSearch: OrderSearch): List<Order> {
-         return em.createQuery("select o from Order o join o.member m " +
-                 "where o.status = :status " +
-                 "and m.name like :name"
-             , Order::class.java)
-             .setParameter("status", orderSearch.orderStatus)
-             .setMaxResults(1000)
-             .resultList
-     }
+    fun findAll(orderSearch: OrderSearch): List<Order> {
+        return em.createQuery(
+            "select o from Order o join o.member m " +
+                "where o.status = :status " +
+                "and m.name like :name",
+            Order::class.java
+        )
+            .setParameter("status", orderSearch.orderStatus)
+            .setMaxResults(1000)
+            .resultList
+    }
 
     fun findAllWithMemberDelivery(): List<Order> {
-        return em.createQuery("select distinct o from Order o " +
+        return em.createQuery(
+            "select distinct o from Order o " +
                 "join fetch o.member m " +
                 "join fetch o.delivery d " +
                 "join fetch o.orderItems oi " +
-                "join fetch oi.item i", Order::class.java)
+                "join fetch oi.item i",
+            Order::class.java
+        )
             .resultList
     }
 
     fun findOrderDtos(): List<OrderSimpleQueryDto> {
         return em.createQuery(
             "select new com.uju.springbootrestapi.order.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address)" +
-                    "from Order o " +
-                    "join o.member m " +
-                    "join o.delivery d",
+                "from Order o " +
+                "join o.member m " +
+                "join o.delivery d",
             OrderSimpleQueryDto::class.java
         ).resultList
     }

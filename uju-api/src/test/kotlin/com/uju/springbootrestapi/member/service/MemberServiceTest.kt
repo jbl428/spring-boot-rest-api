@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional
 internal class MemberServiceTest @Autowired constructor(
     private val memberService: MemberService,
     private val memberRepository: MemberRepository
-){
+) {
 
     @Test
     fun `회원가입`() {
@@ -48,5 +48,4 @@ internal class MemberServiceTest @Autowired constructor(
         }
         assertEquals("이미 존재하는 회원입니다.", thrown.message)
     }
-
 }

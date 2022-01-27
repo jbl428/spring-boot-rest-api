@@ -4,7 +4,6 @@ import com.uju.springbootrestapi.member.Member
 import com.uju.springbootrestapi.member.MemberRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 
 @Service
@@ -41,7 +40,7 @@ class MemberService(
     }
 
     @Transactional
-    fun update(id: Long, name: String): Unit {
+    fun update(id: Long, name: String) {
         val member: Member = memberRepository.findOne(id)
         member.name = name
     }

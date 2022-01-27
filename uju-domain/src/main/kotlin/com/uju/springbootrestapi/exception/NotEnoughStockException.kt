@@ -2,13 +2,12 @@ package com.uju.springbootrestapi.exception
 
 import kotlin.RuntimeException
 
-class NotEnoughStockException: RuntimeException {
+class NotEnoughStockException : RuntimeException {
 
 //    override lateinit var message: String
 //    override lateinit var cause: Throwable
 //    var enableSuppression: Boolean = false
 //    var writableStackTrace: Boolean = false
-
 
     constructor() : super()
 

@@ -1,11 +1,15 @@
 package com.uju.springbootrestapi.item
 
 import com.uju.springbootrestapi.category.Category
-import com.uju.springbootrestapi.delivery.Delivery
 import com.uju.springbootrestapi.exception.NotEnoughStockException
-import com.uju.springbootrestapi.member.Member
-import com.uju.springbootrestapi.orderItem.OrderItem
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.Inheritance
+import javax.persistence.InheritanceType
+import javax.persistence.ManyToMany
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -26,11 +30,11 @@ abstract class Item {
     var categories: MutableList<Category> = mutableListOf()
 
     // 비즈니스 로직
-    fun addStock(quantity: Int): Unit {
+    fun addStock(quantity: Int) {
         this.stockQuantity += quantity
     }
 
-    fun removeStock(quantity: Int): Unit {
+    fun removeStock(quantity: Int) {
         val restStock = this.stockQuantity - quantity
         if (restStock < 0) {
             throw NotEnoughStockException("need more stock")

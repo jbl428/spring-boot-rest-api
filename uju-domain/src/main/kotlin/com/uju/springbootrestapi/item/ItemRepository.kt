@@ -7,7 +7,7 @@ import javax.persistence.EntityManager
 class ItemRepository(
     private val em: EntityManager
 ) {
-    fun save(item: Item): Unit {
+    fun save(item: Item) {
         if (item.id == null) {
             em.persist(item)
         } else {
@@ -15,7 +15,7 @@ class ItemRepository(
         }
     }
 
-    fun findOne(id: Long): Item  {
+    fun findOne(id: Long): Item {
         return em.find(Item::class.java, id)
     }
 
