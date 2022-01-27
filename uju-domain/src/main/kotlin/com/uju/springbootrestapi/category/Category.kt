@@ -10,11 +10,12 @@ class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     var id: Long = 0
-    
+
     var name: String = ""
 
     @ManyToMany
-    @JoinTable(name = "category_item",
+    @JoinTable(
+        name = "category_item",
         joinColumns = [JoinColumn(name = "category_id")],
         inverseJoinColumns = [JoinColumn(name = "item_id")]
     )
@@ -28,7 +29,7 @@ class Category {
     val child: MutableList<Category> = mutableListOf()
 
     // 연관관계 메서드
-    fun addChildCategory(child: Category): Unit {
+    fun addChildCategory(child: Category) {
         this.child.add(child)
         child.parent = this
     }
