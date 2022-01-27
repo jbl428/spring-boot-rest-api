@@ -8,10 +8,9 @@ class ItemRepository(
     private val em: EntityManager
 ) {
     fun save(item: Item) {
-        if (item.id == null) {
-            em.persist(item)
-        } else {
-            em.merge(item)
+        when (item.id) {
+            0L -> em.persist(item)
+            else -> em.merge(item)
         }
     }
 
